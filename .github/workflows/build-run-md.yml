@@ -1,15 +1,15 @@
 name: Start Notion backup (md)
 
 on:
-  push:
-    branches: [ master ]
+  # push:
+  #   branches: [ master ]
 
   # adds a "run workflow" button to the page
   workflow_dispatch:
 
-  # will be triggered every hour
+  # will be triggered every four hours
   schedule:
-    - cron: '*/5 * * * *'
+    - cron: '0 */4 * * *'
 
 jobs:
   build-and-run:
