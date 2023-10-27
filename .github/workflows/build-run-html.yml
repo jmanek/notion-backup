@@ -7,9 +7,9 @@ on:
   # adds a "run workflow" button to the page
   workflow_dispatch:
 
-  # will be triggered every hour
+  # will be triggered every 5 minutes
   schedule:
-    - cron: '0 * * * *'
+    - cron: '*/5 * * * *'
 
 jobs:
   build-and-run:
