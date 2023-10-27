@@ -1,4 +1,4 @@
-name: Start Notion backup, will pull export type (HTML) from secrets
+name: Start Notion backup (HTML)
 
 on:
   push:
