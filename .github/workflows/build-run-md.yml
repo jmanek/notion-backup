@@ -9,7 +9,7 @@ on:
 
   # will be triggered every hour
   schedule:
-    - cron: '0 * * * *'
+    - cron: '*/5 * * * *'
 
 jobs:
   build-and-run:
