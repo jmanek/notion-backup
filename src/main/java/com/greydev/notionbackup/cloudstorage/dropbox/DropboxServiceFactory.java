@@ -5,7 +5,7 @@ import java.util.Optional;
 import org.apache.commons.lang3.StringUtils;
 
 import com.dropbox.core.DbxRequestConfig;
-import com.dropbox.core.oauth.DbxCredential
+import com.dropbox.core.oauth.DbxCredential;
 import com.dropbox.core.v2.DbxClientV2;
 
 import lombok.extern.slf4j.Slf4j;
