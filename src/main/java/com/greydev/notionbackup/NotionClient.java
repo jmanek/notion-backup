@@ -41,7 +41,7 @@ public class NotionClient {
 	private static final String KEY_NOTION_FLATTEN_EXPORT_FILETREE = "NOTION_FLATTEN_EXPORT_FILETREE";
 	private static final String KEY_NOTION_EXPORT_COMMENTS = "NOTION_EXPORT_COMMENTS";
 	private static final String DEFAULT_NOTION_EXPORT_TYPE = "markdown";
-	private static final boolean DEFAULT_NOTION_FLATTEN_EXPORT_FILETREE = true;
+	private static final boolean DEFAULT_NOTION_FLATTEN_EXPORT_FILETREE = false;
 	private static final boolean DEFAULT_NOTION_EXPORT_COMMENTS = true;
 	private static final String DEFAULT_DOWNLOADS_PATH = "/downloads";
 
