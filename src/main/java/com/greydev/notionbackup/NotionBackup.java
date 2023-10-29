@@ -29,7 +29,8 @@ import lombok.extern.slf4j.Slf4j;
 public class NotionBackup {
 
 	public static final String KEY_DROPBOX_ACCESS_TOKEN = "DROPBOX_ACCESS_TOKEN";
-
+	public static final String KEY_DROPBOX_REFRESH_TOKEN = "DROPBOX_REFRESH_TOKEN";
+	
 	public static final String KEY_NEXTCLOUD_EMAIL = "NEXTCLOUD_EMAIL";
 	public static final String KEY_NEXTCLOUD_PASSWORD = "NEXTCLOUD_PASSWORD";
 	public static final String KEY_NEXTCLOUD_WEBDAV_URL = "NEXTCLOUD_WEBDAV_URL";
@@ -91,12 +92,12 @@ public class NotionBackup {
 
 	public static void startDropboxBackup(File fileToUpload) {
 		String dropboxAccessToken = dotenv.get(KEY_DROPBOX_ACCESS_TOKEN);
-
-		if (StringUtils.isBlank(dropboxAccessToken)) {
-			log.info("Skipping Dropbox upload. {} is blank.", KEY_DROPBOX_ACCESS_TOKEN);
+		String dropboxRefreshToken = dotenv.get(KEY_DROPBOX_REFRESH_TOKEN);
+		if (StringUtils.isAnyBlank(dropboxAccessToken, dropboxRefreshToken)) {
+			log.info("Skipping Dropbox upload. {} or {} is blank.", KEY_DROPBOX_ACCESS_TOKEN, KEY_DROPBOX_REFRESH_TOKEN);
 			return;
 		}
-		Optional<DbxClientV2> dropboxServiceOptional = DropboxServiceFactory.create(dropboxAccessToken);
+		Optional<DbxClientV2> dropboxServiceOptional = DropboxServiceFactory.create(dropboxAccessToken, dropboxRefreshToken);
 		if (dropboxServiceOptional.isEmpty()) {
 			log.warn("Could not create Dropbox service. Skipping Dropbox upload");
 			return;
