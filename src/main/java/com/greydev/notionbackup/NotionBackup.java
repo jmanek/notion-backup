@@ -30,6 +30,8 @@ public class NotionBackup {
 
 	public static final String KEY_DROPBOX_ACCESS_TOKEN = "DROPBOX_ACCESS_TOKEN";
 	public static final String KEY_DROPBOX_REFRESH_TOKEN = "DROPBOX_REFRESH_TOKEN";
+	public static final String KEY_DROPBOX_APP_KEY = "DROPBOX_APP_KEY";
+	public static final String KEY_DROPBOX_APP_SECRET = "DROPBOX_APP_SECRET";
 	
 	public static final String KEY_NEXTCLOUD_EMAIL = "NEXTCLOUD_EMAIL";
 	public static final String KEY_NEXTCLOUD_PASSWORD = "NEXTCLOUD_PASSWORD";
@@ -93,11 +95,13 @@ public class NotionBackup {
 	public static void startDropboxBackup(File fileToUpload) {
 		String dropboxAccessToken = dotenv.get(KEY_DROPBOX_ACCESS_TOKEN);
 		String dropboxRefreshToken = dotenv.get(KEY_DROPBOX_REFRESH_TOKEN);
-		if (StringUtils.isAnyBlank(dropboxAccessToken, dropboxRefreshToken)) {
-			log.info("Skipping Dropbox upload. {} or {} is blank.", KEY_DROPBOX_ACCESS_TOKEN, KEY_DROPBOX_REFRESH_TOKEN);
+		String dropboxAppKey = dotenv.get(KEY_DROPBOX_APP_KEY);
+		String dropboxAppSecret = dotenv.get(KEY_DROPBOX_APP_SECRET);
+		if (StringUtils.isAnyBlank(dropboxAccessToken, dropboxRefreshToken, dropboxAppKey, dropboxAppSecret)) {
+			log.info("Skipping Dropbox upload. {}, {}, {}, or {} is blank.", KEY_DROPBOX_ACCESS_TOKEN, KEY_DROPBOX_REFRESH_TOKEN, KEY_DROPBOX_APP_KEY, KEY_DROPBOX_APP_SECRET);
 			return;
 		}
-		Optional<DbxClientV2> dropboxServiceOptional = DropboxServiceFactory.create(dropboxAccessToken, dropboxRefreshToken);
+		Optional<DbxClientV2> dropboxServiceOptional = DropboxServiceFactory.create(dropboxAccessToken, dropboxRefreshToken, dropboxAppKey, dropboxAppSecret);
 		if (dropboxServiceOptional.isEmpty()) {
 			log.warn("Could not create Dropbox service. Skipping Dropbox upload");
 			return;
