@@ -16,9 +16,8 @@ public class DropboxServiceFactory {
 
 	public static Optional<DbxClientV2> create(String dropboxAccessToken, String dropboxRefreshToken, String dropboxAppKey, String dropboxAppSecret) {
 		DbxClientV2 service = null;
-		DbxCredential credential = null;
 		try {
-			credential = new DbxCredential(dropboxAccessToken, -1L, dropboxRefreshToken, dropboxAppKey, dropboxAppSecret);
+			DbxCredential credential = new DbxCredential(dropboxAccessToken, -1L, dropboxRefreshToken, dropboxAppKey, dropboxAppSecret);
 			DbxRequestConfig config = DbxRequestConfig.newBuilder("dropbox/notion-backup").build();
 			service = new DbxClientV2(config, credential);
 		} catch (Exception e) {
