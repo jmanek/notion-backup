@@ -1,3 +1,5 @@
+Fork of [notion-backup](https://github.com/jckleiner/notion-backup) that uses refresh tokens for dropbox auth
+
 # notion-backup
 
 ![example workflow name](https://github.com/jckleiner/notion-backup/actions/workflows/build-run.yml/badge.svg?branch=master)
