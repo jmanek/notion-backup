@@ -1,4 +1,4 @@
-name: Start Notion backup (md)
+name: Notion backup (md)
 
 on:
   # push:
